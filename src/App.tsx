@@ -12,7 +12,11 @@ function App() {
             <Progress value={0}/>
             <Accordion/>
             Task 2
+            <Progress value={1}/>
+            <Progress value={2}/>
             <Progress value={3}/>
+            <Progress value={4}/>
+            <Progress value={5}/>
         </>
     );
 }

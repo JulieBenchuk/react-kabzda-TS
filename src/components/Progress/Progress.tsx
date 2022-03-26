@@ -45,11 +45,11 @@ function Progress(props: any) {
     } else if (props.value === 5) {
         return (
             <div>
-                <Done selected={false}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
+                <Done selected={true}/>
+                <Done selected={true}/>
+                <Done selected={true}/>
+                <Done selected={true}/>
+                <Done selected={true}/>
             </div>
         );
     } else {
