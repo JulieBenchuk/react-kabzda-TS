@@ -1,42 +1,25 @@
 import React from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
+import Progress from "./components/Progress/Progress";
 
 function App() {
     console.log("App is rendering");
     return (
         <>
             <AppTitle/>
-            <Progress/>
+            Task 1
+            <Progress value={0}/>
             <Accordion/>
-            <Progress/>
-        </>
-    );
-}
-
-function Done() {
-    console.log("Is's done!");
-    return (
-        <div>done</div>
-    );
-}
-
-function Progress() {
-    console.log("progress is comming...");
-    return (
-        <>
-            <Done/>
-            <Done/>
-            <Done/>
-            <Done/>
-            <Done/>
+            Task 2
+            <Progress value={3}/>
         </>
     );
 }
 
 function AppTitle() {
     console.log("See on my title!)");
-    return <>This is App component!</>;
+    return <div>Th is is App component!</div>;
 }
 
 export default App;
