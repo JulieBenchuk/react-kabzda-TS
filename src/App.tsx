@@ -7,7 +7,7 @@ function App() {
     console.log("App is rendering");
     return (
         <>
-            <AppTitle/>
+            <PageTitle title={"This is App component!"}/>
             Task 1
             <Progress value={0}/>
             <Accordion/>
@@ -21,9 +21,9 @@ function App() {
     );
 }
 
-function AppTitle() {
+function PageTitle(props: any) {
     console.log("See on my title!)");
-    return <div>Th is is App component!</div>;
+    return <h1>{ props.title }</h1>;
 }
 
 export default App;
