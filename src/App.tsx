@@ -4,7 +4,7 @@ import Accordion from "./components/Accordion/Accordion";
 import Progress from "./components/Progress/Progress";
 
 function App() {
-    console.log("App is rendering");
+    console.log("App is rendering")
     return (
         <>
             <PageTitle title={"This is App component!"}/>
@@ -22,8 +22,8 @@ function App() {
 }
 
 function PageTitle(props: any) {
-    console.log("See on my title!)");
-    return <h1>{ props.title }</h1>;
+    console.log("See on my title!)")
+    return <h1>{ props.title }</h1>
 }
 
 export default App;
