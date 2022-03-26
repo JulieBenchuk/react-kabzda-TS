@@ -1,6 +1,9 @@
 import React from "react";
 
-function Progress(props: any) {
+type ProgressType = {
+    value: 0 | 1 | 2 | 3 | 4 | 5
+}
+function Progress(props: ProgressType) {
     console.log("progress is comming...");
     if (props.value === 1) {
         return (
@@ -65,7 +68,10 @@ function Progress(props: any) {
     };
 }
 
-function Done(props: any) {
+type DoneType = {
+    selected: boolean
+}
+function Done(props: DoneType) {
     console.log("Is's done!");
     if (props.selected === true) {
         return <span> <b>done! </b> </span>;
