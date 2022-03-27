@@ -32,7 +32,7 @@ function AccordionTitle(props: AccordionTitlePropsType) {
 }
 
 function AccordionBody() {
-    console.log("This is accordion body!")
+    console.log("This is accordion's body!")
     return (
         <>
             <li>1</li>

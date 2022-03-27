@@ -19,7 +19,6 @@ function App() {
         </>
     );
 }
-
 type PageTitlePropsType = {
     title: string
 }
