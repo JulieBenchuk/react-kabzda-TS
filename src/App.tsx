@@ -8,7 +8,7 @@ function App() {
     return (
         <>
             <PageTitle title={"This is App component!"}/>
-            <Progress value={0}/>
+            <Progress value={1}/>
             <Accordion titleValue={"Menu"} collapsed={true}/>
             <Accordion titleValue={"Members"} collapsed={false}/>
             <Progress value={1}/>
