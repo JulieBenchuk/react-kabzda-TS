@@ -8,10 +8,9 @@ function App() {
     return (
         <>
             <PageTitle title={"This is App component!"}/>
-            Task 1
             <Progress value={0}/>
-            <Accordion/>
-            Task 2
+            <Accordion titleValue={"Menu"} collapsed={true}/>
+            <Accordion titleValue={"Members"} collapsed={false}/>
             <Progress value={1}/>
             <Progress value={2}/>
             <Progress value={3}/>
@@ -21,7 +20,10 @@ function App() {
     );
 }
 
-function PageTitle(props: any) {
+type PageTitlePropsType = {
+    title: string
+}
+function PageTitle(props: PageTitlePropsType ) {
     console.log("See on my title!)")
     return <h1>{ props.title }</h1>
 }
