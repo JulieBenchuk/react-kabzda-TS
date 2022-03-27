@@ -72,7 +72,7 @@ type DonePropsType = {
     selected: boolean
 }
 function Done(props: DonePropsType) {
-    console.log("Is's done!")
+    console.log("It is done!")
     if (props.selected === true) {
         return <span> <b>done! </b> </span>
     } else {
