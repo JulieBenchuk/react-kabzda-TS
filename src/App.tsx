@@ -3,7 +3,7 @@ import './App.css';
 import Accordion from "./components/Accordion/Accordion";
 import Progress from "./components/Progress/Progress";
 
-function App() {
+const App = () => {
     console.log("App is rendering")
     return (
         <>
@@ -22,7 +22,7 @@ function App() {
 type PageTitlePropsType = {
     title: string
 }
-function PageTitle(props: PageTitlePropsType ) {
+const PageTitle = (props: PageTitlePropsType) => {
     console.log("See on my title!)")
     return <h1>{ props.title }</h1>
 }
