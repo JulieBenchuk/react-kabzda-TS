@@ -3,7 +3,7 @@ import React from "react";
 type ProgressPropsType = {
     value: 0 | 1 | 2 | 3 | 4 | 5
 }
-function Progress(props: ProgressPropsType) {
+const Progress = (props: ProgressPropsType) => {
     console.log("progress is comming...")
     if (props.value === 1) {
         return (
@@ -71,7 +71,7 @@ function Progress(props: ProgressPropsType) {
 type DonePropsType = {
     selected: boolean
 }
-function Done(props: DonePropsType) {
+const Done = (props: DonePropsType) => {
     console.log("It is done!")
     if (props.selected === true) {
         return <span> <b>done! </b> </span>

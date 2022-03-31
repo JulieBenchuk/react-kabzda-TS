@@ -1,11 +1,13 @@
 import React from "react";
+import {AccordionTitle} from "./AccordionTitle";
+import {AccordionBody} from "./AccordionBody";
 
 type AccordionPropsType = {
     titleValue: string
     collapsed: boolean
 }
 
-function Accordion(props: AccordionPropsType) {
+const Accordion = (props: AccordionPropsType) => {
     console.log("Accordion is rendering...")
     if (props.collapsed === true) {
         return (
@@ -21,25 +23,6 @@ function Accordion(props: AccordionPropsType) {
             </>
         );
     }
-}
-
-type AccordionTitlePropsType = {
-    title: string
-}
-function AccordionTitle(props: AccordionTitlePropsType) {
-    console.log("This is accordion title!")
-    return <h3> ---{props.title}--- </h3>;
-}
-
-function AccordionBody() {
-    console.log("This is accordion's body!")
-    return (
-        <>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </>
-    );
 }
 
 export default Accordion;
