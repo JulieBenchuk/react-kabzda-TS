@@ -1,6 +1,8 @@
 import React from "react";
-import {AccordionTitle} from "./AccordionTitle";
-import {AccordionBody} from "./AccordionBody";
+
+import AccordionTitle from "./AccordionTitle";
+
+import AccordionBody from "./AccordionBody";
 
 type AccordionPropsType = {
     titleValue: string
@@ -9,7 +11,7 @@ type AccordionPropsType = {
 
 const Accordion = (props: AccordionPropsType) => {
     console.log("Accordion is rendering...")
-    if (props.collapsed === true) {
+    if (props.collapsed) {
         return (
             <>
                 <AccordionTitle title={props.titleValue}/>
