@@ -11,20 +11,13 @@ type AccordionPropsType = {
 
 const Accordion = (props: AccordionPropsType) => {
     console.log("Accordion is rendering...")
-    if (props.collapsed) {
-        return (
-            <>
-                <AccordionTitle title={props.titleValue}/>
-            </>
-        );
-    } else {
-        return (
-            <>
-                <AccordionTitle title={props.titleValue}/>
-                <AccordionBody/>
-            </>
-        );
-    }
+    return (
+        <>
+            <AccordionTitle title={props.titleValue}/>
+            {!props.collapsed && <AccordionBody/>}
+        </>
+    );
 }
+
 
 export default Accordion;

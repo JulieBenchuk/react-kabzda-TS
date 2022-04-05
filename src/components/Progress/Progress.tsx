@@ -5,67 +5,15 @@ type ProgressPropsType = {
 }
 const Progress = (props: ProgressPropsType) => {
     console.log("progress is comming...")
-    if (props.value === 1) {
         return (
             <div>
-                <Done selected={true}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
+                <Done selected={props.value>0}/>
+                <Done selected={props.value>1}/>
+                <Done selected={props.value>2}/>
+                <Done selected={props.value>3}/>
+                <Done selected={props.value>4}/>
             </div>
         );
-    } else if (props.value === 2) {
-        return (
-            <div>
-                <Done selected={true}/>
-                <Done selected={true}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-            </div>
-        );
-    } else if (props.value === 3) {
-        return (
-            <div>
-                <Done selected={true}/>
-                <Done selected={true}/>
-                <Done selected={true}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-            </div>
-        );
-    } else if (props.value === 4) {
-        return (
-            <div>
-                <Done selected={true}/>
-                <Done selected={true}/>
-                <Done selected={true}/>
-                <Done selected={true}/>
-                <Done selected={false}/>
-            </div>
-        );
-    } else if (props.value === 5) {
-        return (
-            <div>
-                <Done selected={true}/>
-                <Done selected={true}/>
-                <Done selected={true}/>
-                <Done selected={true}/>
-                <Done selected={true}/>
-            </div>
-        );
-    } else {
-        return (
-            <div>
-                <Done selected={false}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-                <Done selected={false}/>
-            </div>
-        );
-    };
 }
 
 type DonePropsType = {
@@ -73,7 +21,7 @@ type DonePropsType = {
 }
 const Done = (props: DonePropsType) => {
     console.log("It is done!")
-    if (props.selected === true) {
+    if (props.selected) {
         return <span> <b>done! </b> </span>
     } else {
         return <span>done! </span>
