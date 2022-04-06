@@ -17,7 +17,7 @@ const App = () => {
             <Progress value={3}/>
             <Progress value={4}/>
             <Progress value={5}/>
-            <OnOff switchedOn={true}/>
+            <OnOff switchedOn={false}/>
         </>
     );
 }

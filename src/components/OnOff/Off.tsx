@@ -6,6 +6,8 @@ const Off = () => {
         <div>
             <div className={classes.square}>   ON   </div>
             <div className={classes.squareOff}>   OFF   </div>
+
+
             <div className={classes.circleOff}>   </div>
         </div>
     );

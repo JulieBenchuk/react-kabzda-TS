@@ -1,10 +1,16 @@
 .all {
-    display: table;
-    width: 400px;
+    display: table-row;
+    text-align: center;
+    font-weight: bold;
+    width: auto;
     position: center;
+    margin: 10px;
+
+
 }
 .square {
     display: table-cell;
+    position: center;
     font-size: large;
     width: 100px;
     height: 50px;
@@ -13,6 +19,7 @@
 }
 .squareOn {
     display: table-cell;
+    position: center;
     font-size: large;
     width: 100px;
     height: 50px;
@@ -21,6 +28,7 @@
 }
 .squareOff {
     display: table-cell;
+    position: center;
     font-size: large;
     width: 100px;
     height: 50px;
@@ -31,20 +39,16 @@
 .circleOn {
     display: table-cell;
     width: 50px;
-    height: 50px;
     background-color: #8dce47;
-    border-radius: 50px;
-    box-shadow: 0 0 10px #8dce47;
+    border-radius: 100%;
+    box-shadow: 0 0 20px #bfff78;
 
 }
 .circleOff {
     display: table-cell;
     width: 50px;
-    height: 50px;
     background-color: #e86767;
-    border-radius: 50px;
-    box-shadow: 0 0 10px #e86767;
-
-
+    border-radius: 100%;
+    box-shadow: 0 0 20px #e37272;
 
 }
