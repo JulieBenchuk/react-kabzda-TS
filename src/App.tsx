@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
 import Progress from "./components/Progress/Progress";
+import OnOff from "./components/OnOff/OnOff";
 
 const App = () => {
     console.log("App is rendering")
@@ -16,6 +17,7 @@ const App = () => {
             <Progress value={3}/>
             <Progress value={4}/>
             <Progress value={5}/>
+            <OnOff status={"on"}/>
         </>
     );
 }

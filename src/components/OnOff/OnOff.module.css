@@ -1,0 +1,24 @@
+.onOff {
+    width: 600px;
+    display: grid;
+    grid-template-areas:
+    "square square circle";
+    grid-gap: 1px;
+}
+.square {
+    position: relative;
+    margin: auto;
+    font-size: large;
+    width: 200px;
+    height: 100px;
+    background-color: #b0b0b0;
+    border-color: black;
+}
+.circle {
+    margin-left: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: #b0b0b0;
+    border-color: black;
+    border-radius: 50px;
+}

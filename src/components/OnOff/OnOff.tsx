@@ -1,9 +1,16 @@
 import React from 'react';
+import classes from "./OnOff.module.css";
 
-const OnOff = () => {
+type OnOffPropsType = {
+    status: "on" | "off"
+}
+const OnOff = (props: OnOffPropsType) => {
     return (
-        <div>
-            
+        <div className={classes.onOff}>
+            <div className={classes.square}>ON</div>
+            <div className={classes.square}>OFF</div>
+            <div className={classes.circle}></div>
+
         </div>
     );
 };
