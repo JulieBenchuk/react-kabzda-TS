@@ -1,49 +1,46 @@
 .all {
-    display: inline-block;
-    width: 600px;
+    display: table;
+    width: 400px;
+    position: center;
 }
 .square {
-
+    display: table-cell;
     font-size: large;
     width: 100px;
     height: 50px;
     background-color: #b0b0b0;
-    border-color: black;
-    margin: 10px;
+    border-style: groove;
 }
 .squareOn {
-
+    display: table-cell;
     font-size: large;
     width: 100px;
     height: 50px;
     background-color: #8dce47;
-    border-color: black;
-    margin: 10px;
+    border-style: groove;
 }
 .squareOff {
-
+    display: table-cell;
     font-size: large;
     width: 100px;
     height: 50px;
     background-color: #e86767;
-    border-color: black;
-     margin: 10px;
+    border-style: groove;
+
 }
 .circleOn {
-
+    display: table-cell;
     width: 50px;
     height: 50px;
     background-color: #8dce47;
-    border-color: black;
     border-radius: 50px;
-    margin: 10px;
+
 }
 .circleOff {
-
+    display: table-cell;
     width: 50px;
     height: 50px;
     background-color: #e86767;
-    border-color: black;
     border-radius: 50px;
-    margin: 10px;
+
 }
