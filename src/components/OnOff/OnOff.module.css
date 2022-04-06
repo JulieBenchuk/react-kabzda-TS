@@ -1,24 +1,49 @@
-.onOff {
+.all {
+    display: inline-block;
     width: 600px;
-    display: grid;
-    grid-template-areas:
-    "square square circle";
-    grid-gap: 1px;
 }
 .square {
-    position: relative;
-    margin: auto;
+
     font-size: large;
-    width: 200px;
-    height: 100px;
+    width: 100px;
+    height: 50px;
     background-color: #b0b0b0;
     border-color: black;
+    margin: 10px;
 }
-.circle {
-    margin-left: 50px;
+.squareOn {
+
+    font-size: large;
     width: 100px;
-    height: 100px;
-    background-color: #b0b0b0;
+    height: 50px;
+    background-color: #8dce47;
+    border-color: black;
+    margin: 10px;
+}
+.squareOff {
+
+    font-size: large;
+    width: 100px;
+    height: 50px;
+    background-color: #e86767;
+    border-color: black;
+     margin: 10px;
+}
+.circleOn {
+
+    width: 50px;
+    height: 50px;
+    background-color: #8dce47;
     border-color: black;
     border-radius: 50px;
+    margin: 10px;
+}
+.circleOff {
+
+    width: 50px;
+    height: 50px;
+    background-color: #e86767;
+    border-color: black;
+    border-radius: 50px;
+    margin: 10px;
 }

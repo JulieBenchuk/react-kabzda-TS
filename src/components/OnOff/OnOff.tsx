@@ -1,16 +1,17 @@
 import React from 'react';
 import classes from "./OnOff.module.css";
+import On from "./On"
+import Off from "./Off";
 
 type OnOffPropsType = {
-    status: "on" | "off"
+    switchedOn: boolean
+
 }
 const OnOff = (props: OnOffPropsType) => {
     return (
-        <div className={classes.onOff}>
-            <div className={classes.square}>ON</div>
-            <div className={classes.square}>OFF</div>
-            <div className={classes.circle}></div>
-
+        <div className={classes.all}>
+            { props.switchedOn && <On />}
+            { !props.switchedOn && <Off />}
         </div>
     );
 };
