@@ -34,6 +34,7 @@
     height: 50px;
     background-color: #8dce47;
     border-radius: 50px;
+    box-shadow: 0 0 10px #8dce47;
 
 }
 .circleOff {
@@ -42,5 +43,8 @@
     height: 50px;
     background-color: #e86767;
     border-radius: 50px;
+    box-shadow: 0 0 10px #e86767;
+
+
 
 }
