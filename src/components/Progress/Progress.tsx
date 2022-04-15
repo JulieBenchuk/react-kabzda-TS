@@ -1,31 +1,37 @@
-import React from "react";
+import React, {MouseEventHandler, useState} from "react";
 
 type ProgressPropsType = {
-    value: 0 | 1 | 2 | 3 | 4 | 5
+
 }
 const Progress = (props: ProgressPropsType) => {
-    console.log("progress is comming...")
-        return (
-            <div>
-                <Done selected={props.value>0}/>
-                <Done selected={props.value>1}/>
-                <Done selected={props.value>2}/>
-                <Done selected={props.value>3}/>
-                <Done selected={props.value>4}/>
-            </div>
-        );
+    const [value, setValue] = useState(0);
+    const onClickButtonHandler = (value: number) => {
+        setValue(value)
+    }
+    return (
+        <div>
+            <Done callBack={()=>onClickButtonHandler(1)} selected={value > 0}/>
+            <Done callBack={()=>onClickButtonHandler(2)} selected={value > 1}/>
+            <Done callBack={()=>onClickButtonHandler(3)} selected={value > 2}/>
+            <Done callBack={()=>onClickButtonHandler(4)} selected={value > 3}/>
+            <Done callBack={()=>onClickButtonHandler(5)} selected={value > 4}/>
+        </div>
+    );
 }
 
 type DonePropsType = {
     selected: boolean
+    callBack: () => void
 }
 const Done = (props: DonePropsType) => {
-    console.log("It is done!")
-    if (props.selected) {
-        return <span> <b>done! </b> </span>
-    } else {
-        return <span>done! </span>
-    };
+    const spanStyle = {
+        fontWeight: props.selected ? "bold" : "normal",
+        padding: "5px"
+    }
+    const onClickSpanHandler = () => {
+        props.callBack()
+    }
+    return <span style={spanStyle} onClick={onClickSpanHandler}>done!</span>
 }
 
 export default Progress;

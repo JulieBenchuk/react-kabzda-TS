@@ -7,18 +7,18 @@ import OnOff from "./components/OnOff/OnOff";
 const App = () => {
     console.log("App is rendering")
     return (
-        <>
+        <div className={"App"}>
             <PageTitle title={"This is App component!"}/>
-            <Progress value={1}/>
-            <Accordion titleValue={"Menu"} collapsed={true}/>
-            <Accordion titleValue={"Members"} collapsed={false}/>
-            <Progress value={1}/>
-            <Progress value={2}/>
+            <Progress />
+            <Accordion titleValue={"Menu"} />
+            <Accordion titleValue={"Members"} />
+            {/*<Progress value={1}/>*/}
+            {/*<Progress value={2}/>
             <Progress value={3}/>
             <Progress value={4}/>
-            <Progress value={5}/>
-            <OnOff switchedOn={false}/>
-        </>
+            <Progress value={5}/>*/}
+            <OnOff />
+        </div>
     );
 }
 type PageTitlePropsType = {
