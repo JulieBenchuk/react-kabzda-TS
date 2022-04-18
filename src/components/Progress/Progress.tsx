@@ -1,20 +1,17 @@
-import React, {MouseEventHandler, useState} from "react";
+import React, {useState} from "react";
 
-type ProgressPropsType = {
-
-}
-const Progress = (props: ProgressPropsType) => {
+const Progress = () => {
     const [value, setValue] = useState(0);
     const onClickButtonHandler = (value: number) => {
         setValue(value)
     }
     return (
         <div>
-            <Done callBack={()=>onClickButtonHandler(1)} selected={value > 0}/>
-            <Done callBack={()=>onClickButtonHandler(2)} selected={value > 1}/>
-            <Done callBack={()=>onClickButtonHandler(3)} selected={value > 2}/>
-            <Done callBack={()=>onClickButtonHandler(4)} selected={value > 3}/>
-            <Done callBack={()=>onClickButtonHandler(5)} selected={value > 4}/>
+            <Done callBack={() => onClickButtonHandler(1)} selected={value > 0}/>
+            <Done callBack={() => onClickButtonHandler(2)} selected={value > 1}/>
+            <Done callBack={() => onClickButtonHandler(3)} selected={value > 2}/>
+            <Done callBack={() => onClickButtonHandler(4)} selected={value > 3}/>
+            <Done callBack={() => onClickButtonHandler(5)} selected={value > 4}/>
         </div>
     );
 }

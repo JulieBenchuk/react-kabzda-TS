@@ -5,19 +5,13 @@ import Progress from "./components/Progress/Progress";
 import OnOff from "./components/OnOff/OnOff";
 
 const App = () => {
-    console.log("App is rendering")
     return (
         <div className={"App"}>
             <PageTitle title={"This is App component!"}/>
-            <Progress />
-            <Accordion titleValue={"Menu"} />
-            <Accordion titleValue={"Members"} />
-            {/*<Progress value={1}/>*/}
-            {/*<Progress value={2}/>
-            <Progress value={3}/>
-            <Progress value={4}/>
-            <Progress value={5}/>*/}
-            <OnOff />
+            <Progress/>
+            <Accordion titleValue={"Menu"}/>
+            <Accordion titleValue={"Members"}/>
+            <OnOff/>
         </div>
     );
 }
@@ -25,8 +19,7 @@ type PageTitlePropsType = {
     title: string
 }
 const PageTitle = (props: PageTitlePropsType) => {
-    console.log("See on my title!)")
-    return <h1>{ props.title }</h1>
+    return <h1>{props.title}</h1>
 }
 
 export default App;

@@ -1,12 +1,8 @@
 import React, {useState} from 'react';
 
-type OnOffPropsType = {
-    /*switchedOn: boolean*/
-
-}
-const OnOff = (props: OnOffPropsType) => {
-    let [switchedOn, setSwitchedOn] = useState(false);
-    const onClickButtonHandler = () => {
+const OnOff = () => {
+    let [switchedOn, setSwitchedOn] = useState(true);
+    const onClickOnOffHandler = () => {
         setSwitchedOn(!switchedOn)
     }
     const onStyle = {
@@ -38,20 +34,14 @@ const OnOff = (props: OnOffPropsType) => {
         backgroundColor: switchedOn ? "green" : "red",
         boxShadow: switchedOn ? "0 0 20px green" : "0 0 20px red"
     }
-    const buttonStyle = {
-        padding: "5px",
-
-    }
     const allStyle = {
         display: "flex"
     }
+
     return (<div style={allStyle}>
-            <div style={onStyle}></div>
-            <div style={offStyle}></div>
+            <div style={onStyle} onClick={onClickOnOffHandler}></div>
+            <div style={offStyle} onClick={onClickOnOffHandler}></div>
             <div style={switchStyle}></div>
-            <button style={buttonStyle}
-                    onClick={onClickButtonHandler}>ON/OFF
-            </button>
         </div>
     )
 }

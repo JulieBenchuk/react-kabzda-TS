@@ -2,11 +2,15 @@ import React from 'react';
 
 type AccordionTitlePropsType = {
     title: string
-}
-function AccordionTitle(props: AccordionTitlePropsType) {
-    console.log("This is accordion title!")
-    return <h3> ---{props.title}--- </h3>;
+    collapsed: boolean
+    setCollapsed: (collapsed: boolean) => void
 }
 
+function AccordionTitle(props: AccordionTitlePropsType) {
+    const onClickAccordionHandler = () => {
+        props.setCollapsed(!props.collapsed)
+    }
+    return <h3 onClick={onClickAccordionHandler}> ---{props.title}--- </h3>;
+}
 
 export default AccordionTitle;
