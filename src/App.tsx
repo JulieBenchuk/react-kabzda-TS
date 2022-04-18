@@ -6,13 +6,14 @@ import OnOff from "./components/OnOff/OnOff";
 
 const App = () => {
     const [collapsed, setCollapsed] = useState(true);
+    let [switchedOn, setSwitchedOn] = useState(true);
     return (
         <div className={"App"}>
             <PageTitle title={"This is App component!"}/>
-            <Progress/>
+            <Progress />
             <Accordion titleValue={"Menu"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed}/>
             <Accordion titleValue={"Members"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed}/>
-            <OnOff/>
+            <OnOff onChange = {()=> {setSwitchedOn(!switchedOn)}} switchedOn={switchedOn}/>
         </div>
     );
 }

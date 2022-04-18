@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const OnOff = () => {
-    let [switchedOn, setSwitchedOn] = useState(true);
-    const onClickOnOffHandler = () => {
-        setSwitchedOn(!switchedOn)
-    }
+type OnOffPropsType = {
+    onChange: ()=> void
+    switchedOn: boolean
+}
+const OnOff = (props:OnOffPropsType) => {
     const onStyle = {
         display: "inline-block",
         width: "50px",
@@ -12,7 +12,7 @@ const OnOff = () => {
         border: "1px solid grey",
         padding: "5px",
         margin: "5px",
-        backgroundColor: switchedOn ? "green" : "white"
+        backgroundColor: props.switchedOn ? "green" : "white"
 
     }
     const offStyle = {
@@ -22,7 +22,7 @@ const OnOff = () => {
         border: "1px solid grey",
         padding: "5px",
         margin: "5px",
-        backgroundColor: switchedOn ? "white" : "red"
+        backgroundColor: props.switchedOn ? "white" : "red"
     }
     const switchStyle = {
         display: "inline-block",
@@ -31,16 +31,16 @@ const OnOff = () => {
         border: "1px solid grey",
         borderRadius: "15px",
         margin: "10px",
-        backgroundColor: switchedOn ? "green" : "red",
-        boxShadow: switchedOn ? "0 0 20px green" : "0 0 20px red"
+        backgroundColor: props.switchedOn ? "green" : "red",
+        boxShadow: props.switchedOn ? "0 0 20px green" : "0 0 20px red"
     }
     const allStyle = {
         display: "flex"
     }
 
     return (<div style={allStyle}>
-            <div style={onStyle} onClick={onClickOnOffHandler}></div>
-            <div style={offStyle} onClick={onClickOnOffHandler}></div>
+            <div style={onStyle} onClick={props.onChange}></div>
+            <div style={offStyle} onClick={props.onChange}></div>
             <div style={switchStyle}></div>
         </div>
     )
