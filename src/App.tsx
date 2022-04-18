@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
 import Progress from "./components/Progress/Progress";
 import OnOff from "./components/OnOff/OnOff";
 
 const App = () => {
+    const [collapsed, setCollapsed] = useState(true);
     return (
         <div className={"App"}>
             <PageTitle title={"This is App component!"}/>
             <Progress/>
-            <Accordion titleValue={"Menu"}/>
-            <Accordion titleValue={"Members"}/>
+            <Accordion titleValue={"Menu"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed}/>
+            <Accordion titleValue={"Members"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed}/>
             <OnOff/>
         </div>
     );

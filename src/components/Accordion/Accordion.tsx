@@ -6,15 +6,16 @@ import AccordionBody from "./AccordionBody";
 
 type AccordionPropsType = {
     titleValue: string
+    onChange: ()=>void
+    collapsed: boolean
 }
 
 const Accordion = (props: AccordionPropsType) => {
-    const [collapsed, setCollapsed] = useState(true);
 
     return (
         <>
-            <AccordionTitle title={props.titleValue} setCollapsed={setCollapsed} collapsed={collapsed}/>
-            {!collapsed && <AccordionBody/>}
+            <AccordionTitle title={props.titleValue} onChange={props.onChange}/>
+            {!props.collapsed && <AccordionBody/>}
         </>
     );
 }
