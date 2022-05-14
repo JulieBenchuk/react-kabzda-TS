@@ -28,7 +28,8 @@ const App = () => {
     }
     const onChangeUniqueSelect = (e: MouseEvent<HTMLDivElement>)=> {
         let filteredList = list.filter(u=>u.title===e.currentTarget.innerHTML)
-        list.length===1 ? setList([...users]) : setList(filteredList)
+        let fullList = [filteredList[0], ...users.filter(u=>u.title!==e.currentTarget.innerHTML)]
+        list.length===1 ? setList(fullList) : setList(filteredList)
         console.log(`User ${e.currentTarget.innerHTML} was clicked`)
     }
 
