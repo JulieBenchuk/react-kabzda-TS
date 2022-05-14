@@ -4,7 +4,16 @@ import Accordion from "./components/Accordion/Accordion";
 import Progress from "./components/Progress/Progress";
 import OnOff from "./components/OnOff/OnOff";
 import {Select} from "./components/Select/Select";
-
+export type usersType = {
+    id: number
+    title: string
+}
+export type usersPropsType = usersType[]
+export const users = [
+    {id: 1, title: "Julie"},
+    {id: 2, title: "Vlad"},
+    {id: 3, title: "Arina"}
+]
 const App = () => {
     const [collapsed, setCollapsed] = useState(true);
     const [switchedOn, setSwitchedOn] = useState(true);
@@ -13,12 +22,13 @@ const App = () => {
         setSelectValue(e.currentTarget.value)
     }
 
+
     return (
         <div className={"App"}>
             <PageTitle title={"This is App component!"}/>
             <Progress />
-            <Accordion titleValue={"Menu"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed}/>
-            <Accordion titleValue={"Members"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed}/>
+        {/*    <Accordion titleValue={"Menu"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed} users={users}/>*/}
+            <Accordion titleValue={"Members"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed} users={users}/>
             <OnOff onChange = {()=> {setSwitchedOn(!switchedOn)}} switchedOn={switchedOn}/>
             <Select onChange={onChangeSelect} value={selectValue}/>
         </div>

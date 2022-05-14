@@ -1,13 +1,18 @@
 import React from 'react';
+import {usersPropsType, usersType} from "../../App";
 
-function AccordionBody() {
-    console.log("This is accordion's body!")
+type AccordionBodyPropsType = {
+    users: usersPropsType
+}
+
+function AccordionBody(props: AccordionBodyPropsType) {
+    const onUserClick = (user: string) => {
+        console.log(`User with name ${user} was clicked`)
+    }
     return (
-        <>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </>
+        <ul>
+            {props.users.map(u=><li onClick={()=>onUserClick(u.title)}>{u.title}</li>)}
+        </ul>
     );
 }
 
