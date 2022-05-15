@@ -1,4 +1,4 @@
-import React, {FocusEvent, MouseEvent} from "react";
+import React, {KeyboardEvent, MouseEvent} from "react";
 import {usersPropsType} from "../../App";
 import s from "./BusySelect.module.css"
 
@@ -6,6 +6,7 @@ import s from "./BusySelect.module.css"
 export type BusySelectPropsType = {
     users: usersPropsType
     onChange: (e: MouseEvent<HTMLDivElement>) => void
+    onKeyUp: (e: KeyboardEvent<HTMLDivElement>)=> void
     ID: number | undefined
     hoveredUser: number | undefined
     active: boolean
@@ -16,7 +17,7 @@ export const BusySelect = (props: BusySelectPropsType) => {
     const selectedUser = props.users.find(u => u.id === props.ID)
     const hoveredUser = props.users.find(u=>u.id===props.hoveredUser)
 
-    return <div className={s.select}>
+    return <div className={s.select} onKeyUp={props.onKeyUp} tabIndex={0}>
         <span onClick={props.onChange} className={s.main}>{selectedUser && selectedUser.title}</span>
         {props.active &&      // if select expanded
             <div className={s.items}>

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, MouseEvent, FocusEvent, useState} from 'react';
+import React, {ChangeEvent, MouseEvent, KeyboardEvent, useState} from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
 import Progress from "./components/Progress/Progress";
@@ -6,6 +6,7 @@ import OnOff from "./components/OnOff/OnOff";
 import {Select} from "./components/Select/Select";
 import {UniqueSelect, UniqueSelectPropsType} from "./components/UniqueSelect/UniqueSelect";
 import {BusySelect} from "./components/BusySelect/BusySelect";
+
 export type usersType = {
     id: number
     title: string
@@ -29,19 +30,19 @@ export const users2 = [
 const App = () => {
     const [collapsed, setCollapsed] = useState(true);
     const [switchedOn, setSwitchedOn] = useState(true);
-    const [selectValue, setSelectValue] = useState<undefined|string>(undefined)
+    const [selectValue, setSelectValue] = useState<undefined | string>(undefined)
     const [list, setList] = useState<usersPropsType>(users1)
     const [active, setActive] = useState<boolean>(false) //start status for busy select
-    const [ID, setID] = useState<undefined|number>(undefined)
-    const [hoveredUser, setHoveredUser] = useState<undefined|number>(undefined)
+    const [ID, setID] = useState<undefined | number>(undefined)
+    const [hoveredUser, setHoveredUser] = useState<undefined | number>(undefined)
     const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
         setSelectValue(e.currentTarget.value)
     }
     //// UniqueSelect
-    const onChangeUniqueSelect = (e: MouseEvent<HTMLDivElement>)=> {
-        let filteredList = list.filter(u=>u.title===e.currentTarget.innerHTML)
-        let fullList = [filteredList[0], ...users1.filter(u=>u.title!==e.currentTarget.innerHTML)]
-        list.length===1 ? setList(fullList) : setList(filteredList)
+    const onChangeUniqueSelect = (e: MouseEvent<HTMLDivElement>) => {
+        let filteredList = list.filter(u => u.title === e.currentTarget.innerHTML)
+        let fullList = [filteredList[0], ...users1.filter(u => u.title !== e.currentTarget.innerHTML)]
+        list.length === 1 ? setList(fullList) : setList(filteredList)
         console.log(`User ${e.currentTarget.innerHTML} was clicked`) //for check clicked element
     }
     //// BUSY SELECT
@@ -59,18 +60,47 @@ const App = () => {
         setHoveredUser(ID)
     }
 
+    //if we click up/down in expanded select with hovered element
+    const onKeyUp = (e: KeyboardEvent<HTMLDivElement>) => {
+        for (let i = 0; i < users2.length; i++) {
+            if (users2[i].id === hoveredUser) {
+                if (e.key === "ArrowDown") {
+                    if (users2[i + 1]) {
+                        setHoveredUser(users2[i + 1].id);
+                        break
+                    }
+                } else if (e.key === "ArrowUp") {
+                    if (users2[i - 1]) {
+                        setHoveredUser(users2[i - 1].id);
+                        break
+                    }
+
+                } else if (e.key === "Enter") {
+                    setHoveredUser(users2[i].id)
+                    setID(users2[i].id)
+                    setActive(false)
+                    break;
+                }
+            }
+        }
+    }
 
 
     return (
         <div className={"App"}>
             <PageTitle title={"This is App component!"}/>
-            <Progress />
-        {/*    <Accordion titleValue={"Menu"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed} users={users}/>*/}
-            <Accordion titleValue={"Members"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed} users={users1}/>
-            <OnOff onChange = {()=> {setSwitchedOn(!switchedOn)}} switchedOn={switchedOn}/>
+            <Progress/>
+            {/*    <Accordion titleValue={"Menu"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed} users={users}/>*/}
+            <Accordion titleValue={"Members"} onChange={() => {
+                setCollapsed(!collapsed)
+            }} collapsed={collapsed} users={users1}/>
+            <OnOff onChange={() => {
+                setSwitchedOn(!switchedOn)
+            }} switchedOn={switchedOn}/>
             <Select onChange={onChangeSelect} value={selectValue}/>
             <UniqueSelect users={list} onChange={onChangeUniqueSelect}/>
-            <BusySelect users={users2} onChange={onChangeBusySelect} ID={ID} hoveredUser={hoveredUser} active={active} onMouseEnter={onMouseEnter} onUserClick={onUserClick}/>
+            <BusySelect users={users2} onChange={onChangeBusySelect} ID={ID} hoveredUser={hoveredUser} active={active}
+                        onMouseEnter={onMouseEnter} onUserClick={onUserClick} onKeyUp={onKeyUp}/>
         </div>
     );
 }
