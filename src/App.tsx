@@ -14,8 +14,6 @@ import {
     setHoveredUserReducer
 } from "./reducer";
 
-
-
 export type usersType = {
     id: number
     title: string
