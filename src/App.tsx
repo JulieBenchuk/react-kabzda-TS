@@ -6,6 +6,13 @@ import OnOff from "./components/OnOff/OnOff";
 import {Select} from "./components/Select/Select";
 import {UniqueSelect} from "./components/UniqueSelect/UniqueSelect";
 import {BusySelect} from "./components/BusySelect/BusySelect";
+import {
+    SET_ACTIVE_FALSE, SET_ACTIVE_OPPOSITE, SET_HOVERED_USER_CURRENT,
+    SET_HOVERED_USER_NEXT,
+    SET_HOVERED_USER_PREVIOUS,
+    setActiveReducer,
+    setHoveredUserReducer
+} from "./reducer";
 
 
 
@@ -14,13 +21,7 @@ export type usersType = {
     title: string
 }
 export type usersPropsType = usersType[]
-type SetActiveActionType = {
-    type: string
-}
-type setHoveredUserActionType = {
-    type: string
-    ID: any
-}
+
 export const users1 = [
     {id: 0, title: "none"},
     {id: 1, title: "Julie"},
@@ -36,35 +37,7 @@ export const users2 = [
     {id: 3, title: "Tatsiana"},
     {id: 4, title: "Ivan"}
 ]
-const SET_ACTIVE_OPPOSITE = "SET_ACTIVE_OPPOSITE"
-const SET_ACTIVE_FALSE = "SET_ACTIVE_FALSE"
 
-const setActiveReducer = (state: boolean, action: SetActiveActionType) => {
-    switch (action.type) {
-        case SET_ACTIVE_OPPOSITE:
-            return !state;
-        case SET_ACTIVE_FALSE:
-            return false;
-        default:
-            throw new Error("Invalid action type :(")
-    }
-    return state;
-}
-const SET_HOVERED_USER_CURRENT = "SET_HOVERED_USER_CURRENT"
-const SET_HOVERED_USER_NEXT = "SET_HOVERED_USER_NEXT"
-const SET_HOVERED_USER_PREVIOUS = "SET_HOVERED_USER_PREVIOUS"
-const setHoveredUserReducer = (state: undefined | number, action: setHoveredUserActionType) => {
-    switch (action.type) {
-        case SET_HOVERED_USER_CURRENT:
-            return action.ID;
-        case SET_HOVERED_USER_NEXT:
-            return users2[action.ID + 1].id;
-        case SET_HOVERED_USER_PREVIOUS:
-            return users2[action.ID - 1].id;
-        default:
-            throw new Error("Invalid hovered action type :(")
-    }
-}
 const App = () => {
     const [collapsed, setCollapsed] = useState(true);
     const [switchedOn, setSwitchedOn] = useState(true);
