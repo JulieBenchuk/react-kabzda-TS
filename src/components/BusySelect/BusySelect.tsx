@@ -18,8 +18,7 @@ export const BusySelect = (props: BusySelectPropsType) => {
         {props.active &&      // if select expanded
             <div className={s.items}>
                 {props.users.map(u =>
-                    <div key={u.id} onClick={()=>{props.onUserClick(u.id)}}> {u.title} </div>
-                        )}
+                    <div key={u.id} onClick={()=>{props.onUserClick(u.id)}}> {u.title} </div>)}
             </div>}
     </div>
 }

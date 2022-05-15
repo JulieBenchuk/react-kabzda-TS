@@ -1,5 +1,5 @@
 import React, {FocusEvent, MouseEvent} from "react";
-import {users, usersPropsType} from "../../App";
+import {users1, usersPropsType} from "../../App";
 import s from "./UniqueSelect.module.css"
 
 
