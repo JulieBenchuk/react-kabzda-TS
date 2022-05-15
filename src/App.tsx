@@ -33,6 +33,7 @@ const App = () => {
     const [list, setList] = useState<usersPropsType>(users1)
     const [active, setActive] = useState<boolean>(false) //start status for busy select
     const [ID, setID] = useState<undefined|number>(undefined)
+    const [hoveredUser, setHoveredUser] = useState<undefined|number>(undefined)
     const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
         setSelectValue(e.currentTarget.value)
     }
@@ -47,10 +48,15 @@ const App = () => {
     const onChangeBusySelect = (e: MouseEvent<HTMLDivElement>) => {
         console.log(`${e.currentTarget.innerHTML} was clicked`)
         setActive(!active)
+        setHoveredUser(ID)
     }
     const onUserClick = (ID: number) => {
+        setHoveredUser(ID)
         setID(ID)
         setActive(false)
+    }
+    const onMouseEnter = (ID: number) => {
+        setHoveredUser(ID)
     }
 
 
@@ -64,7 +70,7 @@ const App = () => {
             <OnOff onChange = {()=> {setSwitchedOn(!switchedOn)}} switchedOn={switchedOn}/>
             <Select onChange={onChangeSelect} value={selectValue}/>
             <UniqueSelect users={list} onChange={onChangeUniqueSelect}/>
-            <BusySelect users={users2} onChange={onChangeBusySelect} ID={ID} active={active} onUserClick={onUserClick}/>
+            <BusySelect users={users2} onChange={onChangeBusySelect} ID={ID} hoveredUser={hoveredUser} active={active} onMouseEnter={onMouseEnter} onUserClick={onUserClick}/>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 span.main {
-    border: 2px solid green;
+    border: 2px solid blue;
     display: inline-block;
     min-height: 20px;
     min-width: 70px;
@@ -10,6 +10,12 @@ span.main {
 .items {
     position: absolute;
     display: block;
+}
+.item {
 
+}
+.itemSelected {
+    background-color: cornflowerblue;
+    color: honeydew;
 
 }
