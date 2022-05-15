@@ -1,17 +1,26 @@
-import React, {ChangeEvent, MouseEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, MouseEvent, KeyboardEvent, useState, useReducer} from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
 import Progress from "./components/Progress/Progress";
 import OnOff from "./components/OnOff/OnOff";
 import {Select} from "./components/Select/Select";
-import {UniqueSelect, UniqueSelectPropsType} from "./components/UniqueSelect/UniqueSelect";
+import {UniqueSelect} from "./components/UniqueSelect/UniqueSelect";
 import {BusySelect} from "./components/BusySelect/BusySelect";
+
+
 
 export type usersType = {
     id: number
     title: string
 }
 export type usersPropsType = usersType[]
+type SetActiveActionType = {
+    type: string
+}
+type setHoveredUserActionType = {
+    type: string
+    ID: any
+}
 export const users1 = [
     {id: 0, title: "none"},
     {id: 1, title: "Julie"},
@@ -21,20 +30,50 @@ export const users1 = [
     {id: 5, title: "Ivan"}
 ]
 export const users2 = [
-    {id: 1, title: "Julie"},
-    {id: 2, title: "Vlad"},
-    {id: 3, title: "Arina"},
-    {id: 4, title: "Tatsiana"},
-    {id: 5, title: "Ivan"}
+    {id: 0, title: "Julie"},
+    {id: 1, title: "Vlad"},
+    {id: 2, title: "Arina"},
+    {id: 3, title: "Tatsiana"},
+    {id: 4, title: "Ivan"}
 ]
+const SET_ACTIVE_OPPOSITE = "SET_ACTIVE_OPPOSITE"
+const SET_ACTIVE_FALSE = "SET_ACTIVE_FALSE"
+
+const setActiveReducer = (state: boolean, action: SetActiveActionType) => {
+    switch (action.type) {
+        case SET_ACTIVE_OPPOSITE:
+            return !state;
+        case SET_ACTIVE_FALSE:
+            return false;
+        default:
+            throw new Error("Invalid action type :(")
+    }
+    return state;
+}
+const SET_HOVERED_USER_CURRENT = "SET_HOVERED_USER_CURRENT"
+const SET_HOVERED_USER_NEXT = "SET_HOVERED_USER_NEXT"
+const SET_HOVERED_USER_PREVIOUS = "SET_HOVERED_USER_PREVIOUS"
+const setHoveredUserReducer = (state: undefined | number, action: setHoveredUserActionType) => {
+    switch (action.type) {
+        case SET_HOVERED_USER_CURRENT:
+            return action.ID;
+        case SET_HOVERED_USER_NEXT:
+            return users2[action.ID + 1].id;
+        case SET_HOVERED_USER_PREVIOUS:
+            return users2[action.ID - 1].id;
+        default:
+            throw new Error("Invalid hovered action type :(")
+    }
+}
 const App = () => {
     const [collapsed, setCollapsed] = useState(true);
     const [switchedOn, setSwitchedOn] = useState(true);
     const [selectValue, setSelectValue] = useState<undefined | string>(undefined)
     const [list, setList] = useState<usersPropsType>(users1)
-    const [active, setActive] = useState<boolean>(false) //start status for busy select
+    ///
+    const [active, dispatchActive] = useReducer(setActiveReducer, false) //start status for busy select && REDUCER
     const [ID, setID] = useState<undefined | number>(undefined)
-    const [hoveredUser, setHoveredUser] = useState<undefined | number>(undefined)
+    const [hoveredUser, dispatchHovered] = useReducer(setHoveredUserReducer, undefined)
     const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
         setSelectValue(e.currentTarget.value)
     }
@@ -48,16 +87,16 @@ const App = () => {
     //// BUSY SELECT
     const onChangeBusySelect = (e: MouseEvent<HTMLDivElement>) => {
         console.log(`${e.currentTarget.innerHTML} was clicked`)
-        setActive(!active)
-        setHoveredUser(ID)
+        dispatchActive({type: SET_ACTIVE_OPPOSITE})
+        dispatchHovered({type: SET_HOVERED_USER_CURRENT, ID: ID})
     }
     const onUserClick = (ID: number) => {
-        setHoveredUser(ID)
+        dispatchHovered({type: SET_HOVERED_USER_CURRENT, ID: ID})
         setID(ID)
-        setActive(false)
+        dispatchActive({type: SET_ACTIVE_FALSE})
     }
     const onMouseEnter = (ID: number) => {
-        setHoveredUser(ID)
+        dispatchHovered({type: SET_HOVERED_USER_CURRENT, ID: ID})
     }
 
     //if we click up/down in expanded select with hovered element
@@ -66,19 +105,19 @@ const App = () => {
             if (users2[i].id === hoveredUser) {
                 if (e.key === "ArrowDown") {
                     if (users2[i + 1]) {
-                        setHoveredUser(users2[i + 1].id);
+                        dispatchHovered({type: SET_HOVERED_USER_NEXT, ID: users2[i].id})
                         break
                     }
                 } else if (e.key === "ArrowUp") {
                     if (users2[i - 1]) {
-                        setHoveredUser(users2[i - 1].id);
+                        dispatchHovered({type: SET_HOVERED_USER_PREVIOUS, ID: users2[i].id})
                         break
                     }
 
                 } else if (e.key === "Enter") {
-                    setHoveredUser(users2[i].id)
+                    dispatchHovered({type: SET_HOVERED_USER_CURRENT, ID: users2[i].id})
                     setID(users2[i].id)
-                    setActive(false)
+                    dispatchActive({type: SET_ACTIVE_FALSE})
                     break;
                 }
             }
