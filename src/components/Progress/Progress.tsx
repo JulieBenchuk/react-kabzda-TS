@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const Progress = () => {
+export const Progress_ = () => {
     const [value, setValue] = useState(0);
     const onClickButtonHandler = (value: number) => {
         setValue(value)
@@ -31,4 +31,4 @@ const Done = (props: DonePropsType) => {
     return <span style={spanStyle} onClick={onClickSpanHandler}>done!</span>
 }
 
-export default Progress;
+export const Progress = React.memo(Progress_);

@@ -5,7 +5,8 @@ type AccordionBodyPropsType = {
     users: usersPropsType
 }
 
-function AccordionBody(props: AccordionBodyPropsType) {
+export function AccordionBody_ (props: AccordionBodyPropsType) {
+    console.log("AccordionBody")
     const onUserClick = (user: string) => {
         console.log(`User with name ${user} was clicked`)
     }
@@ -16,4 +17,4 @@ function AccordionBody(props: AccordionBodyPropsType) {
     );
 }
 
-export default AccordionBody;
+export const AccordionBody = React.memo(AccordionBody_)

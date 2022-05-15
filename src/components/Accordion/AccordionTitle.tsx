@@ -5,8 +5,9 @@ type AccordionTitlePropsType = {
     onChange: ()=>void
 }
 
-function AccordionTitle(props: AccordionTitlePropsType) {
+export function AccordionTitle_ (props: AccordionTitlePropsType) {
+    console.log("AccordionTitle")
     return <h3 onClick={props.onChange}> ---{props.title}--- </h3>;
 }
 
-export default AccordionTitle;
+export const AccordionTitle = React.memo(AccordionTitle_);

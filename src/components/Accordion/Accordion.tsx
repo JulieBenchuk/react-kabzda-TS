@@ -1,8 +1,6 @@
 import React from "react";
-
-import AccordionTitle from "./AccordionTitle";
-
-import AccordionBody from "./AccordionBody";
+import {AccordionTitle} from "./AccordionTitle";
+import {AccordionBody} from "./AccordionBody";
 import {usersPropsType, usersType} from "../../App";
 
 type AccordionPropsType = {
@@ -12,8 +10,8 @@ type AccordionPropsType = {
     users: usersPropsType
 }
 
-const Accordion = (props: AccordionPropsType) => {
-
+export const Accordion_ = (props: AccordionPropsType) => {
+    console.log("Accordion")
     return (
         <>
             <AccordionTitle title={props.titleValue} onChange={props.onChange}/>
@@ -21,6 +19,5 @@ const Accordion = (props: AccordionPropsType) => {
         </>
     );
 }
+export const Accordion = React.memo(Accordion_)
 
-
-export default Accordion;

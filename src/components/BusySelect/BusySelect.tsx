@@ -13,7 +13,7 @@ export type BusySelectPropsType = {
     onUserClick: (ID: number) => void
     onMouseEnter: (ID: number) => void
 }
-export const BusySelect = (props: BusySelectPropsType) => {
+export const BusySelect_ = (props: BusySelectPropsType) => {
     const selectedUser = props.users.find(u => u.id === props.ID)
     const hoveredUser = props.users.find(u=>u.id===props.hoveredUser)
 
@@ -26,3 +26,4 @@ export const BusySelect = (props: BusySelectPropsType) => {
             </div>}
     </div>
 }
+export const BusySelect = React.memo(BusySelect_)

@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
+
 
 type OnOffPropsType = {
     onChange: ()=> void
     switchedOn: boolean
 }
-const OnOff = (props:OnOffPropsType) => {
+export const OnOff_ = (props:OnOffPropsType) => {
     const onStyle = {
         display: "inline-block",
         width: "50px",
@@ -46,4 +47,4 @@ const OnOff = (props:OnOffPropsType) => {
     )
 }
 
-export default OnOff;
+export const OnOff = React.memo(OnOff_);

@@ -1,5 +1,5 @@
-import React, {FocusEvent, MouseEvent} from "react";
-import {users1, usersPropsType} from "../../App";
+import React, {MouseEvent} from "react";
+import {usersPropsType} from "../../App";
 import s from "./UniqueSelect.module.css"
 
 
@@ -7,7 +7,7 @@ export type UniqueSelectPropsType = {
     users: usersPropsType
     onChange: (e: MouseEvent<HTMLDivElement>) => void
 }
-export const UniqueSelect = (props: UniqueSelectPropsType) => {
+export const UniqueSelect_ = (props: UniqueSelectPropsType) => {
 
     return <div>
         <div className={s.selectListAll}>
@@ -20,3 +20,4 @@ export const UniqueSelect = (props: UniqueSelectPropsType) => {
         </div>
     </div>
 }
+export const UniqueSelect = React.memo(UniqueSelect_)

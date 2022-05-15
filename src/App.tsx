@@ -1,8 +1,8 @@
 import React, {ChangeEvent, MouseEvent, KeyboardEvent, useState, useReducer} from 'react';
 import './App.css';
-import Accordion from "./components/Accordion/Accordion";
-import Progress from "./components/Progress/Progress";
-import OnOff from "./components/OnOff/OnOff";
+import {Accordion} from "./components/Accordion/Accordion";
+import {Progress} from "./components/Progress/Progress";
+import {OnOff} from "./components/OnOff/OnOff";
 import {Select} from "./components/Select/Select";
 import {UniqueSelect} from "./components/UniqueSelect/UniqueSelect";
 import {BusySelect} from "./components/BusySelect/BusySelect";
