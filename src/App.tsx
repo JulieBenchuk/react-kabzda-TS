@@ -1,20 +1,18 @@
-import React, {ChangeEvent, MouseEvent, KeyboardEvent, useState, useReducer} from 'react';
+import React, {ChangeEvent, MouseEvent, useMemo, useState} from 'react';
 import './App.css';
 import {Accordion} from "./components/Accordion/Accordion";
 import {Progress} from "./components/Progress/Progress";
 import {OnOff} from "./components/OnOff/OnOff";
 import {Select} from "./components/Select/Select";
 import {UniqueSelect} from "./components/UniqueSelect/UniqueSelect";
-import {BusySelect} from "./components/BusySelect/BusySelect";
-import {
-    SET_ACTIVE_FALSE, SET_ACTIVE_OPPOSITE, SET_HOVERED_ITEM_CURRENT,
-    SET_HOVERED_ITEM_NEXT,
-    SET_HOVERED_ITEM_PREVIOUS,
-    setActiveReducer,
-    setHoveredItemReducer
-} from "./reducer";
-import {CitiesSelect} from "./components/BusySelect/CitiesSelect";
+import {CitiesSelect} from "./components/BusySelect/Cities_Select";
 
+type PageTitlePropsType = {
+    title: string
+}
+const PageTitle = (props: PageTitlePropsType) => {
+    return <h1>{props.title}</h1>
+}
 export type usersType = {
     id: number
     title: string
@@ -27,12 +25,11 @@ export type citiesType = {
     population: number
     goodForEmigration: boolean
 }
-export type citiesPropsType = citiesType []
+export type citiesPropsType = citiesType[]
 export type filterForSelectType = {
     id: number
     filteredCities: citiesPropsType
 }
-
 export const users1 = [
     {id: 0, title: "none"},
     {id: 1, title: "Julie"},
@@ -48,24 +45,27 @@ export const users2 = [
     {id: 3, title: "Tatsiana"},
     {id: 4, title: "Ivan"}
 ]
-export const cities = [
-    {id: 0, title: "Grodno", country: "Belarus", population: 500000, goodForEmigration: true},
-    {id: 1, title: "Kiev", country: "Ukraine", population: 3000000, goodForEmigration: false},
-    {id: 2, title: "Brest", country: "Belarus", population: 400000, goodForEmigration: true},
-    {id: 3, title: "Retchica", country: "Belarus", population: 60000, goodForEmigration: false},
-    {id: 4, title: "Gdansk", country: "Poland", population: 300000, goodForEmigration: true},
-    {id: 5, title: "Krakow", country: "Poland", population: 800000, goodForEmigration: true},
-    {id: 6, title: "Chernigiv", country: "Ukraine", population: 600000, goodForEmigration: false},
-    {id: 7, title: "Belgorod", country: "Russia", population: 400000, goodForEmigration: false}
 
-]
-export const filterForSelect = [
-    {id: 0, filteredCities: cities.filter(c=>c.country==="Belarus")},
-    {id: 1, filteredCities: cities.filter(c=>c.population>500000)},
-    {id: 2, filteredCities: cities.filter(c=>c.goodForEmigration===true)},
-    {id: 2, filteredCities: cities}
-]
 const App = () => {
+    console.log("APP IS RENDERING")
+    const [cities, setCities] = useState([
+        {id: 0, title: "Grodno", country: "Belarus", population: 500000, goodForEmigration: true},
+        {id: 1, title: "Kiev", country: "Ukraine", population: 3000000, goodForEmigration: false},
+        {id: 2, title: "Brest", country: "Belarus", population: 400000, goodForEmigration: true},
+        {id: 3, title: "Retchica", country: "Belarus", population: 60000, goodForEmigration: false},
+        {id: 4, title: "Gdansk", country: "Poland", population: 300000, goodForEmigration: true},
+        {id: 5, title: "Krakow", country: "Poland", population: 800000, goodForEmigration: true},
+        {id: 6, title: "Chernigiv", country: "Ukraine", population: 600000, goodForEmigration: false},
+        {id: 7, title: "Belgorod", country: "Russia", population: 400000, goodForEmigration: false}
+
+    ]);
+    const filterForSelect = [
+        {id: 0, filteredCities: cities.filter(c => c.country === "Belarus")},
+        {id: 1, filteredCities: cities.filter(c => c.population > 500000)},
+        {id: 2, filteredCities: cities.filter(c => c.goodForEmigration === true)},
+        {id: 3, filteredCities: cities}
+    ];
+
     const [collapsed, setCollapsed] = useState(true);
     const [switchedOn, setSwitchedOn] = useState(true);
     const [selectValue, setSelectValue] = useState<undefined | string>(undefined)
@@ -81,10 +81,15 @@ const App = () => {
         console.log(`User ${e.currentTarget.innerHTML} was clicked`) //for check clicked element
     }
 
+    const addCity = () => {
+        let newCity = {id: 8, title: "City", country: "Country", population: 0, goodForEmigration: false};
+        setCities([...cities, newCity])
+    }
 
     return (
         <div className={"App"}>
-            <CitiesSelect filterForSelect={filterForSelect}/>
+            <button onClick={addCity}>add new city</button>
+            <CitiesSelect data={filterForSelect}/>
             <PageTitle title={"This is App component!"}/>
             <Progress/>
             <Accordion titleValue={"Members"} onChange={() => {
@@ -98,11 +103,4 @@ const App = () => {
         </div>
     );
 }
-type PageTitlePropsType = {
-    title: string
-}
-const PageTitle = (props: PageTitlePropsType) => {
-    return <h1>{props.title}</h1>
-}
-
 export default App;

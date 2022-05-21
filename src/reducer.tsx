@@ -1,5 +1,3 @@
-import {cities} from "./App";
-
 
 export type SetActiveActionType = {
     type: string
@@ -31,9 +29,9 @@ export const setHoveredItemReducer = (state: undefined | number, action: setHove
         case SET_HOVERED_ITEM_CURRENT:
             return action.ID;
         case SET_HOVERED_ITEM_NEXT:
-            return cities[action.ID + 1].id;
+            return action.ID + 1;
         case SET_HOVERED_ITEM_PREVIOUS:
-            return cities[action.ID - 1].id;
+            return action.ID - 1;
         default:
             throw new Error("Invalid hovered action type :(")
     }
