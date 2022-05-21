@@ -1,4 +1,4 @@
-import {SET_ACTIVE_FALSE, SET_HOVERED_USER_NEXT, setActiveReducer, setHoveredUserReducer} from "./reducer";
+import {SET_ACTIVE_FALSE, SET_HOVERED_ITEM_NEXT, setActiveReducer, setHoveredItemReducer} from "./reducer";
 import {users2, usersPropsType} from "./App";
 import {useReducer} from "react";
 
@@ -19,10 +19,10 @@ test("reducer with nonexistent type should throw error", ()=> {
 
 test("reducer should hover next element after press ArrowDown", ()=>{
     //data
-    const [hoveredUser, dispatchHovered] = useReducer(setHoveredUserReducer, undefined)
+    const [hoveredUser, dispatchHovered] = useReducer(setHoveredItemReducer, undefined)
     // action
     // expectation
     expect(()=>{
-        dispatchHovered({type: SET_HOVERED_USER_NEXT, ID: users2[1].id})
+        dispatchHovered({type: SET_HOVERED_ITEM_NEXT, ID: users2[1].id})
     }).toBe(2);
 })

@@ -1,4 +1,11 @@
 .App {
+    display: flex;
+    flex-direction: column;
     width: 600px;
     margin: 50px auto;
+}
+.busySelect {
+    display: flex;
+    padding-bottom: 160px;
+
 }
