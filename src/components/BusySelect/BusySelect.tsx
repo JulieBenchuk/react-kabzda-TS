@@ -4,6 +4,7 @@ import s from "./BusySelect.module.css"
 
 
 export type BusySelectPropsType = {
+    selectID: number
     data: usersPropsType | citiesPropsType
     onChange: (e: MouseEvent<HTMLDivElement>) => void
     onKeyUp: (e: KeyboardEvent<HTMLDivElement>)=> void

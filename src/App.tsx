@@ -13,6 +13,7 @@ import {
     setActiveReducer,
     setHoveredItemReducer
 } from "./reducer";
+import {CitiesSelect} from "./components/BusySelect/CitiesSelect";
 
 export type usersType = {
     id: number
@@ -27,6 +28,10 @@ export type citiesType = {
     goodForEmigration: boolean
 }
 export type citiesPropsType = citiesType []
+export type filterForSelectType = {
+    id: number
+    filteredCities: citiesPropsType
+}
 
 export const users1 = [
     {id: 0, title: "none"},
@@ -54,16 +59,17 @@ export const cities = [
     {id: 7, title: "Belgorod", country: "Russia", population: 400000, goodForEmigration: false}
 
 ]
-
+export const filterForSelect = [
+    {id: 0, filteredCities: cities.filter(c=>c.country==="Belarus")},
+    {id: 1, filteredCities: cities.filter(c=>c.population>500000)},
+    {id: 2, filteredCities: cities.filter(c=>c.goodForEmigration===true)},
+    {id: 2, filteredCities: cities}
+]
 const App = () => {
     const [collapsed, setCollapsed] = useState(true);
     const [switchedOn, setSwitchedOn] = useState(true);
     const [selectValue, setSelectValue] = useState<undefined | string>(undefined)
     const [list, setList] = useState<usersPropsType>(users1)
-    ///
-    const [active, dispatchActive] = useReducer(setActiveReducer, false) //start status for busy select && REDUCER
-    const [ID, setID] = useState<undefined | number>(undefined)
-    const [hoveredItem, dispatchHovered] = useReducer(setHoveredItemReducer, undefined)
     const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
         setSelectValue(e.currentTarget.value)
     }
@@ -74,66 +80,13 @@ const App = () => {
         list.length === 1 ? setList(fullList) : setList(filteredList)
         console.log(`User ${e.currentTarget.innerHTML} was clicked`) //for check clicked element
     }
-    //// BUSY SELECT
-    const onChangeBusySelect = (e: MouseEvent<HTMLDivElement>) => {
-        console.log(`${e.currentTarget.innerHTML} was clicked`)
-        dispatchActive({type: SET_ACTIVE_OPPOSITE})
-        dispatchHovered({type: SET_HOVERED_ITEM_CURRENT, ID: ID})
-    }
-    const onUserClick = (ID: number) => {
-        dispatchHovered({type: SET_HOVERED_ITEM_CURRENT, ID: ID})
-        setID(ID)
-        dispatchActive({type: SET_ACTIVE_FALSE})
-    }
-    const onMouseEnter = (ID: number) => {
-        dispatchHovered({type: SET_HOVERED_ITEM_CURRENT, ID: ID})
-    }
-
-    //if we click up/down in expanded select with hovered element
-    const onKeyUp = (e: KeyboardEvent<HTMLDivElement>, data: usersPropsType | citiesPropsType) => {
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].id === hoveredItem) {
-                if (e.key === "ArrowDown") {
-                    if (data[i + 1]) {
-                        dispatchHovered({type: SET_HOVERED_ITEM_NEXT, ID: data[i].id})
-                        break
-                    }
-                } else if (e.key === "ArrowUp") {
-                    if (data[i - 1]) {
-                        dispatchHovered({type: SET_HOVERED_ITEM_PREVIOUS, ID: data[i].id})
-                        break
-                    }
-
-                } else if (e.key === "Enter") {
-                    dispatchHovered({type: SET_HOVERED_ITEM_CURRENT, ID: data[i].id})
-                    setID(data[i].id)
-                    dispatchActive({type: SET_ACTIVE_FALSE})
-                    break;
-                }
-            }
-        }
-    }
 
 
     return (
         <div className={"App"}>
+            <CitiesSelect filterForSelect={filterForSelect}/>
             <PageTitle title={"This is App component!"}/>
-            <div className={"busySelect"}>
-                <BusySelect data={cities} onChange={onChangeBusySelect} ID={ID} hoveredItem={hoveredItem}
-                            active={active}
-                            onMouseEnter={onMouseEnter} onUserClick={onUserClick} onKeyUp={(e) => onKeyUp(e, cities)}/>
-                <BusySelect data={cities.filter(c => c.country === "Belarus")} onChange={onChangeBusySelect} ID={ID}
-                            hoveredItem={hoveredItem} active={active}
-                            onMouseEnter={onMouseEnter} onUserClick={onUserClick} onKeyUp={(e) => onKeyUp(e, cities)}/>
-                <BusySelect data={cities.filter(c => c.population >= 500000)} onChange={onChangeBusySelect} ID={ID}
-                            hoveredItem={hoveredItem} active={active}
-                            onMouseEnter={onMouseEnter} onUserClick={onUserClick} onKeyUp={(e) => onKeyUp(e, cities)}/>
-                <BusySelect data={cities.filter(c => c.goodForEmigration === true)} onChange={onChangeBusySelect}
-                            ID={ID} hoveredItem={hoveredItem} active={active}
-                            onMouseEnter={onMouseEnter} onUserClick={onUserClick} onKeyUp={(e) => onKeyUp(e, cities)}/>
-            </div>
             <Progress/>
-            {/*    <Accordion titleValue={"Menu"} onChange={() => {setCollapsed(!collapsed)}} collapsed={collapsed} users={users}/>*/}
             <Accordion titleValue={"Members"} onChange={() => {
                 setCollapsed(!collapsed)
             }} collapsed={collapsed} users={users1}/>
