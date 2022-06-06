@@ -9,6 +9,7 @@ import {CitiesSelect} from "./components/BusySelect/Cities_Select";
 import {Clock} from "./components/Clock/Clock";
 import {UseState} from "./components/Hooks/UseState";
 import {UseEffect} from "./components/Hooks/UseEffect";
+import {SetTimeOut} from "./components/Hooks/SetTimeOut";
 
 type PageTitlePropsType = {
     title: string
@@ -91,6 +92,8 @@ const App = () => {
 
     return (
         <div className={"App"}>
+            <Clock />
+            <SetTimeOut />
             <UseEffect />
             <UseState />
             <button onClick={addCity}>add new city</button>
@@ -105,7 +108,6 @@ const App = () => {
             }} switchedOn={switchedOn}/>
             <Select onChange={onChangeSelect} value={selectValue}/>
             <UniqueSelect users={list} onChange={onChangeUniqueSelect}/>
-            <Clock />
         </div>
     );
 }

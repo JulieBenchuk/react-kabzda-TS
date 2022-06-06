@@ -1,18 +1,23 @@
 import React, {useEffect, useState} from 'react';
 
 
-export const UseEffect = () => {
+export const SetTimeOut = () => {
     console.log("Component is rendering...")
     const [counter, setCounter] = useState(0)
-    const [fake, setFake] = useState(10)
-    useEffect(()=> {
+    const changer = (state: number)=>{
+        return state+1
+    }
+/*    useEffect(()=> {
         console.log("UseEffect")
-        document.title=counter.toString()
-    }, [counter])
+        setInterval(()=>{
+            console.log("Interval")
+           setCounter(changer)
+        }, 2000)
+    }, [])*/
+
     return (
         <div>
-            Counter: {counter} Fake: {fake}
-            <button onClick={() => setFake(fake+1)}>+</button>
+            Counter: {counter}
             <button onClick={() => setCounter(counter+1)}>+</button>
         </div>
     );
