@@ -7,7 +7,8 @@ import {Select} from "./components/Select/Select";
 import {UniqueSelect} from "./components/UniqueSelect/UniqueSelect";
 import {CitiesSelect} from "./components/BusySelect/Cities_Select";
 import {Clock} from "./components/Clock/Clock";
-import {UseState} from "./components/UseState/UseState";
+import {UseState} from "./components/Hooks/UseState";
+import {UseEffect} from "./components/Hooks/UseEffect";
 
 type PageTitlePropsType = {
     title: string
@@ -90,6 +91,7 @@ const App = () => {
 
     return (
         <div className={"App"}>
+            <UseEffect />
             <UseState />
             <button onClick={addCity}>add new city</button>
             <CitiesSelect data={filterForSelect}/>

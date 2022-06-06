@@ -6,7 +6,7 @@ const generateData = () => {
 }
 
 export const UseState = () => {
-    console.log("UseState is rendering...")
+    console.log("Hooks is rendering...")
     /*let initialValue = useMemo(generateData, []);*/
     const [counter, setCounter] = useState(generateData)
     const changer = (state: number) => state+1
