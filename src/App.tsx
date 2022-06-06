@@ -6,6 +6,8 @@ import {OnOff} from "./components/OnOff/OnOff";
 import {Select} from "./components/Select/Select";
 import {UniqueSelect} from "./components/UniqueSelect/UniqueSelect";
 import {CitiesSelect} from "./components/BusySelect/Cities_Select";
+import {Clock} from "./components/Clock/Clock";
+import {UseState} from "./components/UseState/UseState";
 
 type PageTitlePropsType = {
     title: string
@@ -88,6 +90,7 @@ const App = () => {
 
     return (
         <div className={"App"}>
+            <UseState />
             <button onClick={addCity}>add new city</button>
             <CitiesSelect data={filterForSelect}/>
             <PageTitle title={"This is App component!"}/>
@@ -100,6 +103,7 @@ const App = () => {
             }} switchedOn={switchedOn}/>
             <Select onChange={onChangeSelect} value={selectValue}/>
             <UniqueSelect users={list} onChange={onChangeUniqueSelect}/>
+            <Clock />
         </div>
     );
 }
