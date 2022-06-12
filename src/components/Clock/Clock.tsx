@@ -16,10 +16,10 @@ export const Clock = () => {
         let id = setInterval(() => {
             console.log("setInterval is starting")
             setDate(new Date());
+
             let hr_rotation = 30 * hours + minuets / 2; //converting current time
             let min_rotation = 6 * minuets;
             let sec_rotation = 6 * sek;
-
             /*      hour.style.transform = `rotate(${hr_rotation}deg)`;
                   minute.style.transform = `rotate(${min_rotation}deg)`;
                   second.style.transform = `rotate(${sec_rotation}deg)`;*/
@@ -34,7 +34,7 @@ export const Clock = () => {
 
     return (
         <div>
-            {digitalMode && <p>{transformTime(hours)} : {transformTime(minuets)} : {transformTime(sek)}</p>}
+            {digitalMode && <p id="analogClock">{transformTime(hours)} : {transformTime(minuets)} : {transformTime(sek)}</p>}
             {!digitalMode && <div id="clockContainer">
                 <div id="hour"></div>
                 <div id="minute"></div>

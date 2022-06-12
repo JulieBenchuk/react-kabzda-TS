@@ -1,3 +1,7 @@
+#analogClock {
+    font-size: 40px;
+}
+
 #clockContainer {
     position: relative;
     margin: auto;
